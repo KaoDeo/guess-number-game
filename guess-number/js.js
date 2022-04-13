@@ -1,4 +1,4 @@
-//grabbing all the data I need to work on
+
 
 let randomNumber = Math.floor(Math.random() * 100) + 1;
 
@@ -7,18 +7,12 @@ const lastResult = document.querySelector('.lastResult');
 const lowOrHi = document.querySelector('.lowOrHi');
 const overlay = document.querySelector('#infoImg')
 
-const guessSubmit = document.querySelector('.guessSubmit'); //btn
-const guessField = document.querySelector('.guessField'); // text field
+const guessSubmit = document.querySelector('.guessSubmit');
+const guessField = document.querySelector('.guessField'); 
 
-let guessCount = 1; //players first go
-let resetButton; //to reset the game
-guessField.focus(); //this method to automatically put the text cursor into the <input> text field as soon as the page loads, meaning that the user can start typing their first guess right away, without having to click the form field first
-// Variables that don't contain references to form elements won't have focus() available to them. e.g guesses and guessCount consts
-
-
-
-//functions
-
+let guessCount = 1; 
+let resetButton; 
+guessField.focus(); 
 function checkGuess() {
     const userGuess = Number(guessField.value);
     if (guessCount === 1) { //players' first go
@@ -43,27 +37,19 @@ function checkGuess() {
       }
     }
   
-    guessCount++; //player uses up the turn so we increment it by 1
-    guessField.value = ''; //empty the value out of the form text and focus it again, ready for the next guess to be entered
+    guessCount++; 
+    guessField.value = ''; 
     guessField.focus();
   }
-  
-
-  // when btn is pressed, we need to call checkGuesses() func
-  // for theat use event
+ 
 
   guessSubmit.addEventListener('click', checkGuess);
-
-
-
-
-  //finishing the game
 
   function setGameOver() {
     guessField.disabled = true;
     guessSubmit.disabled = true;
     
-    //generate new btn
+    
     resetButton = document.createElement('button');
     resetButton.textContent = 'Start new game';
     resetButton.style.border = 'none'
@@ -73,22 +59,17 @@ function checkGuess() {
     document.body.append(resetButton);
     
 
-
-    //when btn is clicked, the game resets by resetGame()
     resetButton.addEventListener('click', resetGame);
   }
 
 
-  //reset game and start it again
-
   function resetGame() {
     guessCount = 1;
   
-    //empty all the texts out of the info paragraps
+  
     const resetParas = document.querySelectorAll('.resultParas p');
     for (const resetPara of resetParas) {
-      resetPara.textContent = ''; //loop through all the paragraphs and set them to an empty string
-      //Note that even though resetParas is a constant, we can change its internal properties like textContent.
+      resetPara.textContent = ''; 
     }
   
     resetButton.parentNode.removeChild(resetButton);
